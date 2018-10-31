@@ -1,0 +1,24 @@
+<h2>Please search the list of students with the courseID</h2>
+<form>
+  <input type="search" name="query" [(ngModel)]="query" (keyup.enter)="search()">
+  <button type="button" (click)="search()">Search</button>
+</form>
+<table *ngIf="searchResults">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>DOB</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let student of searchResults; let i=index">
+    <td>{{student.id}}</td>
+    <td>{{student.name}}</td>
+    <td>{{student.dob}}</td>
+    <td><ng-container *ngFor="let i of student.courses" >
+      {{i.id}}.{{i.name}}<br>
+      </ng-container></td>
+  </tr>
+  </tbody>
+</table>
